@@ -1,7 +1,4 @@
-yarn-lock.json
 node_modules
 .idea
-.yarn/*
-build
-dist
+.yarn
 .DS_Store
