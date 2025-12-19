@@ -45,6 +45,18 @@ Perfect for development, workshops, prototyping, CI, and experimentation.
 
 ---
 
+## ⚠️ Preview network readiness & wallet compatibility
+
+Midnight is currently in the process of preparing everything for the Preview network.
+
+Lace has released a Preview-compatible wallet, but it does not work with this local “Undeployed” setup yet.
+
+Until everything is ready for Preview, we recommend using the previous version of the Lace Midnight wallet: **v2.33.0**.
+
+Download (Chrome): https://chrome-stats.com/d/hgeekaiplokcnmakghbdfbgnlfheichg/download
+
+---
+
 ## 🛠️ Prerequisites
 
 Ensure you have the following tools installed on your system:
@@ -54,7 +66,9 @@ Ensure you have the following tools installed on your system:
 * **Node.js ≥ 22.16.0** (using [nvm](https://github.com/nvm-sh/nvm) is highly recommended for version management)
 * **Yarn** (classic)
 
-You will also need the **Midnight Lace Wallet** installed to connect and interact with the local node.
+You will also need the Midnight Lace Wallet to connect and interact with the local node.
+⚠️ Important: The newer Preview-compatible Lace wallet does not work with this local “Undeployed” setup at the moment. Please use Lace Midnight Wallet v2.33.0 instead:
+https://chrome-stats.com/d/hgeekaiplokcnmakghbdfbgnlfheichg/download
 
 ---
 
