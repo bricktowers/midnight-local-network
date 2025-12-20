@@ -19,3 +19,14 @@ export class StandaloneConfig implements Config {
     setNetworkId(NetworkId.Undeployed);
   }
 }
+
+export class TestnetRemoteConfig implements Config {
+  indexer = 'https://indexer.testnet-02.midnight.network/api/v1/graphql';
+  indexerWS = 'wss://indexer.testnet-02.midnight.network/api/v1/graphql/ws';
+  node = 'https://rpc.testnet-02.midnight.network';
+  proofServer = 'http://127.0.0.1:6300';
+
+  constructor() {
+    setNetworkId(NetworkId.TestNet);
+  }
+}
