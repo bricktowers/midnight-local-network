@@ -112,7 +112,9 @@ async function main(): Promise<void> {
     let stoppable : Stoppable[] = []
     if (cliInput.mnemonic) {
         const seed: Buffer = await bip39.mnemonicToSeed(cliInput.mnemonic);
-        let takeSeed = seed.subarray(0, 32);
+        // To match Lace Wallet derivation, we take the first 32 bytes of the seed
+        // This is unclear from BIP-39, but is what makes this interoperable with Lace
+        const takeSeed = seed.subarray(0, 32);
         const receiver = await initWalletWithSeed(takeSeed);
         stoppable.push(receiver.wallet);
         const shieldedAddress: string = await rx.firstValueFrom(
