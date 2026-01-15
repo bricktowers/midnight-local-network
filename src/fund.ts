@@ -5,7 +5,7 @@ import pinoPretty from 'pino-pretty';
 import {initWalletWithSeed} from "./utils";
 import {MidnightBech32m} from '@midnight-ntwrk/wallet-sdk-address-format';
 import * as rx from 'rxjs';
-import * as ledger from '@midnight-ntwrk/ledger-v6';
+import * as ledger from '@midnight-ntwrk/ledger-v7';
 import * as bip39 from 'bip39';
 import {CombinedTokenTransfer} from "@midnight-ntwrk/wallet-sdk-facade";
 
