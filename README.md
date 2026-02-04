@@ -65,7 +65,7 @@ Ensure you have the following tools installed on your system:
 * **Docker** and **Docker Compose v2**
 * **Node.js ≥ 22.16.0** (using [nvm](https://github.com/nvm-sh/nvm) is highly recommended for version management)
 * **Yarn** (classic)
-* **Lace Midnight Preview ** (v2.36.0 or later) browser extension
+* **Lace Midnight ** (??? or later) browser extension
 
 You will also need the Midnight Lace Wallet to connect and interact with the local node.
 
