@@ -6,7 +6,7 @@ services:
       - "6300:6300"
 
   indexer:
-    image: 'ghcr.io/midnight-ntwrk/indexer-standalone:3.0.0-alpha.22'
+    image: 'ghcr.io/midnight-ntwrk/indexer-standalone:3.0.0'
     container_name: "indexer"
     ports:
       - '8088:8088'
@@ -27,9 +27,9 @@ services:
     depends_on:
       node:
         condition: service_started
-  node:
 
-    image: 'ghcr.io/midnight-ntwrk/midnight-node:0.20.0-alpha.1'
+  node:
+    image: 'ghcr.io/midnight-ntwrk/midnight-node:0.20.1'
     container_name: "node"
     ports:
       - "9944:9944"

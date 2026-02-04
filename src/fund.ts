@@ -164,21 +164,26 @@ async function main(): Promise<void> {
 
 
         const recipe = await sender.wallet.transferTransaction(
-            sender.shieldedSecretKeys,
-            sender.dustSecretKey,
             outputs,
-            new Date(Date.now() + 30 * 60 * 1000),
+            {
+                shieldedSecretKeys: sender.shieldedSecretKeys,
+                dustSecretKey: sender.dustSecretKey,
+            },
+            {
+                ttl:new Date(Date.now() + 30 * 60 * 1000),
+                payFees: true
+            }
         );
 
         const tx = await sender.wallet
-            .signTransaction(recipe.transaction, (payload) => sender.unshieldedKeystore.signData(payload))
+            .signUnprovenTransaction(recipe.transaction, (payload) => sender.unshieldedKeystore.signData(payload))
 
         logger.info(
             'Transfer recipe created',
         );
 
         const transaction = await sender.wallet
-            .finalizeTransaction({ type: 'TransactionToProve', transaction: tx });
+            .finalizeTransaction(tx);
 
         logger.info('Transaction proof generated');
 
