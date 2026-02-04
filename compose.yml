@@ -1,12 +1,12 @@
 services:
   proof-server:
-    image: 'europe-west6-docker.pkg.dev/btow-playground/btow-docker/proof-server:7.0.0-alpha.1-arm64'
+    image: 'bricktowers/proof-server:7.0.0'
     container_name: "proof-server"
     ports:
       - "6300:6300"
 
   indexer:
-    image: 'ghcr.io/midnight-ntwrk/indexer-standalone:3.0.0'
+    image: 'midnightntwrk/indexer-standalone:3.0.0'
     container_name: "indexer"
     ports:
       - '8088:8088'
@@ -29,7 +29,7 @@ services:
         condition: service_started
 
   node:
-    image: 'ghcr.io/midnight-ntwrk/midnight-node:0.20.1'
+    image: 'midnightntwrk/midnight-node:0.20.1'
     container_name: "node"
     ports:
       - "9944:9944"
