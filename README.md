@@ -49,11 +49,11 @@ Perfect for development, workshops, prototyping, CI, and experimentation.
 
 This repository tracks compatibility against specific Midnight stacks.
 
-| Repo Version | Ledger Stage | Lace | Proof Server | Midnight Node | Indexer (standalone) | Notes |
-| --- | --- | --- | --- | --- | --- | --- |
+| Repo Version | Ledger Stage | Lace     | Proof Server | Midnight Node | Indexer (standalone) | Notes |
+| --- | --- |----------| --- | --- | --- | --- |
 | [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0` | `4.0.0` | `0.12.0` | `2.1.2` |  |
 | [`2.0.0`](https://github.com/bricktowers/midnight-local-network/tree/2.0.0) | ledger-v6 | `2.37.0` | `6.1.0-alpha.6` | `0.18.0` |  | Unofficial “preview stack”; never announced officially |
-| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7 |  | `7.0.0` | `0.20.1` | `3.0.0` | Official preprod release |
+| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7 | `2.38.0` | `7.0.0` | `0.20.1` | `3.0.0` | Official preprod release |
 
 ---
 
@@ -65,7 +65,7 @@ Ensure you have the following tools installed on your system:
 * **Docker** and **Docker Compose v2**
 * **Node.js ≥ 22.16.0** (using [nvm](https://github.com/nvm-sh/nvm) is highly recommended for version management)
 * **Yarn** (classic)
-* **Lace Midnight ** (??? or later) browser extension
+* **Lace Midnight ** (2.38.0 or later) browser extension
 
 You will also need the Midnight Lace Wallet to connect and interact with the local node.
 
