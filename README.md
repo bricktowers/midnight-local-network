@@ -45,6 +45,18 @@ Perfect for development, workshops, prototyping, CI, and experimentation.
 
 ---
 
+## 📓 Changelog / Compatibility Notes
+
+This repository tracks compatibility against specific Midnight stacks.
+
+| Repo Version | Ledger Stage | Lace     | Proof Server | Midnight Node | Indexer (standalone) | Notes |
+| --- | --- |----------| --- | --- | --- | --- |
+| [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0` | `4.0.0` | `0.12.0` | `2.1.2` |  |
+| [`2.0.0`](https://github.com/bricktowers/midnight-local-network/tree/2.0.0) | ledger-v6 | `2.37.0` | `6.1.0-alpha.6` | `0.18.0` |  | Unofficial “preview stack”; never announced officially |
+| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7 | `2.38.0` | `7.0.0` | `0.20.1` | `3.0.0` | Official preprod release |
+
+---
+
 ## 🛠️ Prerequisites
 
 Ensure you have the following tools installed on your system:
@@ -53,7 +65,7 @@ Ensure you have the following tools installed on your system:
 * **Docker** and **Docker Compose v2**
 * **Node.js ≥ 22.16.0** (using [nvm](https://github.com/nvm-sh/nvm) is highly recommended for version management)
 * **Yarn** (classic)
-* **Lace Midnight Preview ** (v2.36.0 or later) browser extension
+* **Lace Midnight ** (2.38.0 or later) browser extension
 
 You will also need the Midnight Lace Wallet to connect and interact with the local node.
 
@@ -156,7 +168,31 @@ yarn fund mn_addr_undeployed1q....
 - Shielded addresses are most commonly obtained directly from the **Midnight Lace Wallet**, but supplying the original mnemonic is useful for automated or headless setups.
 - The script **only supports the `undeployed` network**. If you provide an address from another network (i.e. the prefix does not match `mn_shield-addr_undeployed...` or `mn_addr_undeployed...`), the script will exit with an error.
 
-### 5. Connect your dApp
+### 5. Fund and Register Dust
+
+If you need dust generation for a local wallet, you can fund the wallet’s unshielded address and register the resulting UTXOs for dust generation in a single command.
+
+This command requires a **BIP-39 mnemonic**, because it must sign the dust registration with the wallet’s unshielded key.
+
+Usage:
+
+```bash
+yarn fund-and-register-dust "<mnemonic words>"
+```
+
+Example:
+
+```bash
+yarn fund-and-register-dust "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+```
+
+Notes:
+
+- The script funds the **unshielded** address derived from the mnemonic, then registers the newly created UTXOs for dust generation.
+- It waits until the receiver wallet reports unshielded UTXOs before attempting dust registration.
+- The script **only supports the `undeployed` network**.
+
+### 6. Connect your dApp
 
 Typically, your dApp will use the `dapp-connector-api` to communicate with the Midnight Lace Wallet.
 When running locally, this automatically configures your dApp to connect to the “Undeployed” network.
@@ -176,6 +212,3 @@ export class TestnetLocalConfig implements Config {
   }
 }
 ```
-
-
-
