@@ -9,7 +9,7 @@ This setup is especially valuable for dApp developers who want to build and test
 It also includes a **wallet funding tool**, solving a key gap:
 * When the Midnight Lace Wallet is connected to a local "Undeployed" network, **there is no built-in way to fund shielded and unshielded addresses**. 
  
-This project provides that missing capability.
+This project provides that missing capability. This project extends the Midnight Network with additional developer tooling.
 
 ---
 
