@@ -7,7 +7,7 @@
 This setup is especially valuable for dApp developers who want to build and test against a fully local Midnight network instead of relying on public testnets, which may be unstable or temporarily unavailable.
 
 It also includes a **wallet funding tool**, solving a key gap:
-* When the Midnight Lace Wallet is connected to a local "Undeployed" network, **there is no built-in way to fund shielded and unshielded addresses**. 
+* When the Lace Wallet is connected to a local "Undeployed" network, **there is no built-in way to fund shielded and unshielded addresses**. 
  
 This project provides that missing capability. This project extends the Midnight Network with additional developer tooling.
 
@@ -25,7 +25,7 @@ Building on Midnight often requires stable environments, but public testnets and
 This repository enables you to:
 
 - Spin up a **fully functional Midnight network locally**
-- Connect the **Midnight Lace Preview Wallet** to that network
+- Connect the ** Lace Wallet** to that network
 - **Fund** any shielded address directly using the provided script
 
 Perfect for development, workshops, prototyping, CI, and experimentation.
@@ -50,11 +50,12 @@ Perfect for development, workshops, prototyping, CI, and experimentation.
 
 This repository tracks compatibility against specific Midnight stacks.
 
-| Repo Version | Ledger Stage | Lace     | Proof Server | Midnight Node | Indexer (standalone) | Notes |
-| --- | --- |----------| --- | --- | --- | --- |
-| [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0` | `4.0.0` | `0.12.0` | `2.1.2` |  |
-| [`2.0.0`](https://github.com/bricktowers/midnight-local-network/tree/2.0.0) | ledger-v6 | `2.37.0` | `6.1.0-alpha.6` | `0.18.0` |  | Unofficial “preview stack”; never announced officially |
-| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7 | `2.38.0` | `7.0.0` | `0.20.1` | `3.0.0` | Official preprod release |
+| Repo Version                                                                | Ledger Stage  | Lace                | Proof Server    | Midnight Node | Indexer (standalone) | Notes |
+|-----------------------------------------------------------------------------|---------------|---------------------|-----------------|---------------|----------------------| --- |
+| [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0`            | `4.0.0`         | `0.12.0`      | `2.1.2`              |  |
+| [`2.0.0`](https://github.com/bricktowers/midnight-local-network/tree/2.0.0) | ledger-v6     | `2.37.0`            | `6.1.0-alpha.6` | `0.18.0`      |                      | Unofficial “preview stack”; never announced officially |
+| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7     | `2.38.0`            | `7.0.0`         | `0.20.1`      | `3.0.0`              | Official preprod release |
+| [`4.0.0`](https://github.com/bricktowers/midnight-local-network/tree/4.0.0) | ledger-v8     | `1.36.0` (Official) | `8.0.0`         | `0.22.1`      | `4.0.0`              | Official preprod release |
 
 ---
 
@@ -66,9 +67,9 @@ Ensure you have the following tools installed on your system:
 * **Docker** and **Docker Compose v2**
 * **Node.js ≥ 22.16.0** (using [nvm](https://github.com/nvm-sh/nvm) is highly recommended for version management)
 * **Yarn** (classic)
-* **Lace Midnight ** (2.38.0 or later) browser extension
+* **Lace ** (1.36.0 or later) browser extension
 
-You will also need the Midnight Lace Wallet to connect and interact with the local node.
+You will also need the Lace Wallet to connect and interact with the local node.
 
 ---
 
@@ -114,11 +115,11 @@ docker compose up -d
 
 Tip: The explicit filename -f compose.yml is often optional, but can be used for clarity: docker compose -f compose.yml up -d.
 
-### 3. Connect Midnight Lace Wallet
+### 3. Connect Lace Wallet
 
-You need to configure your Midnight Lace Wallet to use your local node instead of a public testnet.
+You need to configure your Lace Wallet to use your local node instead of a public testnet.
 
-* Open the Wallet Settings -> Midnight in the Midnight Lace Wallet.
+* Open the Wallet Settings -> Midnight in the Lace Wallet.
 
 * Switch network to "Undeployed"
 
