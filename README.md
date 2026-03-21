@@ -50,12 +50,12 @@ Perfect for development, workshops, prototyping, CI, and experimentation.
 
 This repository tracks compatibility against specific Midnight stacks.
 
-| Repo Version                                                                | Ledger Stage  | Lace                | Proof Server    | Midnight Node | Indexer (standalone) | Notes |
-|-----------------------------------------------------------------------------|---------------|---------------------|-----------------|---------------|----------------------| --- |
-| [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0`            | `4.0.0`         | `0.12.0`      | `2.1.2`              |  |
+| Repo Version                                                                | Ledger Stage  | Lace                | Proof Server    | Midnight Node | Indexer (standalone) | Notes                                                  |
+|-----------------------------------------------------------------------------|---------------|---------------------|-----------------|---------------|----------------------|--------------------------------------------------------|
+| [`1.0.0`](https://github.com/bricktowers/midnight-local-network/tree/1.0.0) | pre-ledger-v6 | `2.33.0`            | `4.0.0`         | `0.12.0`      | `2.1.2`              |                                                        |
 | [`2.0.0`](https://github.com/bricktowers/midnight-local-network/tree/2.0.0) | ledger-v6     | `2.37.0`            | `6.1.0-alpha.6` | `0.18.0`      |                      | Unofficial “preview stack”; never announced officially |
-| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7     | `2.38.0`            | `7.0.0`         | `0.20.1`      | `3.0.0`              | Official preprod release |
-| [`4.0.0`](https://github.com/bricktowers/midnight-local-network/tree/4.0.0) | ledger-v8     | `1.36.0` (Official) | `8.0.0`         | `0.22.1`      | `4.0.0`              | Official preprod release |
+| [`3.0.0`](https://github.com/bricktowers/midnight-local-network/tree/3.0.0) | ledger-v7     | `2.38.0`            | `7.0.0`         | `0.20.1`      | `3.0.0`              | Official preprod release                               |
+| [`4.0.0`](https://github.com/bricktowers/midnight-local-network/tree/4.0.0) | ledger-v8     | `1.36.0` (Official) | `8.0.0`         | `0.22.1`      | `4.0.0`              | Official mainnet release, switch to Lace wallet        |
 
 ---
 
