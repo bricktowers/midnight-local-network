@@ -1,10 +1,10 @@
 // Copyright 2025 Brick Towers
 
 import * as rx from 'rxjs';
-import * as ledger from '@midnight-ntwrk/ledger-v7';
+import * as ledger from '@midnight-ntwrk/ledger-v8';
 import type { Logger } from 'pino';
-import type { WalletFacade } from '@midnight-ntwrk/wallet-sdk-facade';
-import type { UtxoWithMeta as UtxoWithMetaDust } from '@midnight-ntwrk/wallet-sdk-dust-wallet';
+import type { CombinedTokenTransfer, WalletFacade } from '@midnight-ntwrk/wallet-sdk-facade';
+import { DustAddress, MidnightBech32m, UnshieldedAddress } from '@midnight-ntwrk/wallet-sdk-address-format';
 import type { UnshieldedWalletState } from '@midnight-ntwrk/wallet-sdk-unshielded-wallet';
 import {
     createLogger,
@@ -47,16 +47,20 @@ async function registerDustGeneration(
     logger: Logger,
     walletFacade: WalletFacade,
     unshieldedState: UnshieldedWalletState,
-    dustReceiverAddress: string,
+    dustReceiverAddress: DustAddress,
     unshieldedPublicKey: ledger.SignatureVerifyingKey,
     signWithUnshielded: (payload: Uint8Array) => ledger.Signature,
 ): Promise<string | undefined> {
     const ttlIn10min = new Date(Date.now() + 10 * 60 * 1000);
     await walletFacade.dust.waitForSyncedState();
 
-    const utxos: UtxoWithMetaDust[] = unshieldedState.availableCoins
+    const utxos = unshieldedState.availableCoins
         .filter((coin) => !coin.meta.registeredForDustGeneration)
-        .map((utxo) => ({ ...utxo.utxo, ctime: new Date(utxo.meta.ctime) }));
+        .map((utxo) => ({
+            ...utxo.utxo,
+            ctime: new Date(utxo.meta.ctime),
+            registeredForDustGeneration: utxo.meta.registeredForDustGeneration,
+        }));
 
     if (utxos.length === 0) {
         logger.info('No unregistered UTXOs found for dust generation.');
@@ -85,8 +89,8 @@ async function registerDustGeneration(
 
     const dustBalance = await rx.firstValueFrom(
         walletFacade.state().pipe(
-            rx.filter((s) => s.dust.walletBalance(new Date()) > 0n),
-            rx.map((s) => s.dust.walletBalance(new Date())),
+            rx.map((s) => s.dust.balance(new Date())),
+            rx.filter((balance) => balance > 0n),
         ),
     );
 
@@ -114,13 +118,16 @@ async function main(): Promise<void> {
         stoppable.push(sender.wallet);
         logger.info('Wallet setup complete');
 
-        const outputs = [
+        const outputs: CombinedTokenTransfer[] = [
             {
                 type: 'unshielded' as const,
                 outputs: [
                     {
                         amount: TRANSFER_AMOUNT,
-                        receiverAddress: receiver.unshieldedAddress,
+                        receiverAddress: MidnightBech32m.parse(receiver.unshieldedAddress).decode(
+                            UnshieldedAddress,
+                            'undeployed',
+                        ),
                         type: ledger.unshieldedToken().raw,
                     },
                 ],
@@ -146,7 +153,7 @@ async function main(): Promise<void> {
             logger,
             receiver.walletBundle.wallet,
             receiverState.unshielded,
-            receiverState.dust.dustAddress,
+            receiverState.dust.address,
             receiver.walletBundle.unshieldedKeystore.getPublicKey(),
             (payload) => receiver.walletBundle.unshieldedKeystore.signData(payload),
         );

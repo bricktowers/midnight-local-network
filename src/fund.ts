@@ -1,8 +1,9 @@
 // Copyright 2025 Brick Towers
 
-import * as ledger from '@midnight-ntwrk/ledger-v7';
+import * as ledger from '@midnight-ntwrk/ledger-v8';
 import * as bip39 from 'bip39';
 import {CombinedTokenTransfer} from "@midnight-ntwrk/wallet-sdk-facade";
+import { MidnightBech32m, ShieldedAddress, UnshieldedAddress } from '@midnight-ntwrk/wallet-sdk-address-format';
 import {
     createLogger,
     deriveReceiverFromMnemonic,
@@ -13,8 +14,8 @@ import {
 
 interface CliInput {
     mnemonic?: string;
-    shieldedAddress?: string;
-    unshieldedAddress?: string;
+    shieldedAddress?: ShieldedAddress;
+    unshieldedAddress?: UnshieldedAddress;
 }
 
 function getReceiverMnemonicsFromArgs(): CliInput {
@@ -73,8 +74,18 @@ Examples:
         }
 
         return isShielded
-            ? { shieldedAddress: arg }
-            : { unshieldedAddress: arg };
+            ? {
+                shieldedAddress: MidnightBech32m.parse(arg).decode(
+                    ShieldedAddress,
+                    'undeployed',
+                ),
+            }
+            : {
+                unshieldedAddress: MidnightBech32m.parse(arg).decode(
+                    UnshieldedAddress,
+                    'undeployed',
+                ),
+            };
     }
 
     // ---- fallback ----------------------------------------------------------
@@ -98,8 +109,14 @@ async function main(): Promise<void> {
     if (cliInput.mnemonic) {
         const receiver = await deriveReceiverFromMnemonic(cliInput.mnemonic);
         stoppable.push(receiver.walletBundle.wallet);
-        cliInput.shieldedAddress = receiver.shieldedAddress;
-        cliInput.unshieldedAddress = receiver.unshieldedAddress;
+        cliInput.shieldedAddress = MidnightBech32m.parse(receiver.shieldedAddress).decode(
+            ShieldedAddress,
+            'undeployed',
+        );
+        cliInput.unshieldedAddress = MidnightBech32m.parse(receiver.unshieldedAddress).decode(
+            UnshieldedAddress,
+            'undeployed',
+        );
         logger.info(
             { shieldedAddress: receiver.shieldedAddress, unshieldedAddress: receiver.unshieldedAddress },
             'Derived receiver addresses from mnemonic',
