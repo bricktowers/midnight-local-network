@@ -194,7 +194,27 @@ Notes:
 - It waits until the receiver wallet reports unshielded UTXOs before attempting dust registration.
 - The script **only supports the `undeployed` network**.
 
-### 6. Connect your dApp
+### 6. Decode the generated mnemonic to get the seed
+
+If you need the seed for your wallet, this step converts a BIP-39 mnemonic into its corresponding 64-byte (512-bit) seed, which serves as the root for all key and address derivation.
+```
+yarn decode-mnemonic-to-seed "<mnemonic words>"
+```
+
+Example:
+
+```bash
+yarn decode-mnemonic-to-seed "abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon about"
+```
+
+Notes:
+
+- The seed is derived using the standard `BIP-39 PBKDF2` process
+- Optional passphrase support is included in the utility (defaults to empty string)
+- This seed is the root input for all key and address derivation
+
+
+### 7. Connect your dApp
 
 Typically, your dApp will use the `dapp-connector-api` to communicate with the Midnight Lace Wallet.
 When running locally, this automatically configures your dApp to connect to the “Undeployed” network.

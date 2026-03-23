@@ -11,7 +11,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "fund": "tsx src/fund.ts",
-    "fund-and-register-dust": "tsx src/fund-and-register-dust.ts"
+    "fund-and-register-dust": "tsx src/fund-and-register-dust.ts",
+    "decode-mnemonic-to-seed": "tsx src/decodeMnemonicToSeed.ts"
   },
   "dependencies": {
     "@midnight-ntwrk/ledger-v8": "8.0.3",
